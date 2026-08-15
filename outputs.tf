@@ -24,7 +24,7 @@ output "sagemaker_apps_region" {
 }
 output "sagemaker_apps_resource_spec" {
   description = "Map of resource_spec values across all sagemaker_apps, keyed the same as var.sagemaker_apps"
-  value       = { for k, v in aws_sagemaker_app.sagemaker_apps : k => v.resource_spec if v.resource_spec != null && length(v.resource_spec) > 0 }
+  value       = { for k, v in aws_sagemaker_app.sagemaker_apps : k => one(v.resource_spec) if v.resource_spec != null && length(v.resource_spec) > 0 }
 }
 output "sagemaker_apps_space_name" {
   description = "Map of space_name values across all sagemaker_apps, keyed the same as var.sagemaker_apps"
